@@ -1,0 +1,94 @@
+*, *::before, *::after{
+  box-sizing: border-box;
+  user-select: none;
+}
+body{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 100vh;
+  max-width: 100vw;
+  background-color: #263238;
+}
+
+h1 {
+  display: absolute;
+  font-family: "Niconne", cursive;
+  color: #fcedd8;
+  font-size: 5rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 1px #263238,
+    2px 2px 0 #eb452b,
+    3px 3px 1px #263238,
+    5px 5px 0 #efa032,
+    6px 6px 1px #263238,
+    7.5px 7.5px 0 #46b59b,
+    8.5px 8.5px 1px #263238,
+    10px 10px 0 #017e7f,
+    11px 11px 1px #263238,
+    12.5px 12.5px 0 #052939,
+    13.5px 13.5px 1px #263238,
+    15px 15px 0 #c11a2b;
+    
+  animation: 3s 10s infinite alternate move;
+}
+
+.dot-wrapper {
+  margin: 0 auto;
+  width: 500px;
+  height: 500px;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  perspective: 600px;
+  display: relative;
+}
+
+.dot {
+  animation: toyoureyes 3s infinite reverse;
+  position: absolute;
+  background: black;
+  opacity: .7;
+}
+
+@for $i from 1 through 50 {
+  .dot:nth-child(#{$i}){
+    $size: random(30)+px;
+    height:  $size;
+    width:   $size;
+    animation-delay: -$i * .2s;
+    transform: translate3d( (random(1000) * 1px),  (random(1000) * 1px), (random(2000) * 1px));
+    background: hsl( random(310)+50 , 100%, 50%); 
+  }
+}
+
+@keyframes toyoureyes {
+  100% {
+    transform: translate3d(0, 0, -1000px);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: scale(0.5) translate2d(50%, 50%);
+  }
+
+  // 25% {
+  //   transform: scale(1) rotate(0.25turn);
+  // }
+
+  // 50% {
+  //   transform: scale(1.75) rotate(0.5turn);
+  // }
+
+
+  // 75% {
+  //   transform: scale(2.5) rotate(0.75turn);
+  // }
+
+  100% {
+    transform: scale(3) rotate(1turn) translate3d(0, 0, -1000px);;
+  }
+}
+
